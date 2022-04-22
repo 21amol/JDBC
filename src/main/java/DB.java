@@ -7,7 +7,8 @@ public class DB {
     public static void main(String[] args) throws SQLException {
         a = connected();
         reteriveData(a);
-       // updateData(a);
+        updateData(a);
+        reteriveDataByName(a);
     }
 
 
@@ -42,13 +43,13 @@ public class DB {
         preparedStatement.setString(2, "Terisa");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //      System.out.println(resultSet.getInt("id"));
-        //    System.out.println(resultSet.getString("salary"));
+            System.out.println(resultSet.getInt("id"));
+            System.out.println(resultSet.getString("salary"));
+            System.out.println(resultSet.getString("dept"));
+            System.out.println(resultSet.getString("startDate"));
+
             salary = (resultSet.getString("salary"));
 
-            //    deptName = (resultSet.getString("dept"));
-
-            //      System.out.println(resultSet.getString("startDate"));
         }
         return salary;
     }
@@ -65,6 +66,18 @@ public class DB {
 //            salary = (resultSet.getString("salary"));
 //            System.out.println(salary);
 //        }
+    }
+
+    public static String reteriveDataByName(Connection connection) throws SQLException {
+        String salary = null;
+        String query = "select * from employeePayroll where name =?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, "Terisa");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            salary = (resultSet.getString("salary"));
+        }
+        return salary;
     }
 
     public static void listDrivers() {
