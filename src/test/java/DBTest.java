@@ -51,6 +51,17 @@ class DBTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void givenGender_shouldReturn_avgSalary() {
+        try {
+            a = DB.connected();
+            String expected = DB.avgSalary(a);
+            Assert.assertEquals("40000.0", expected);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

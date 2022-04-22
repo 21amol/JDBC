@@ -7,11 +7,12 @@ public class DB {
 
     public static void main(String[] args) throws SQLException {
         a = connected();
-        //      reteriveData(a);
-        //      updateData(a);
-        //      reteriveDataByName(a);
-      //  particularDateRange(a);
+        reteriveData(a);
+        updateData(a);
+        reteriveDataByName(a);
+        particularDateRange(a);
         sumByGroup(a);
+        avgSalary(a);
     }
 
 
@@ -116,9 +117,22 @@ public class DB {
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             salary = (resultSet.getString("salary"));
-            System.out.println("Sum of salary by gender(F) is: "+salary);
+            System.out.println("Sum of salary by gender(F) is: " + salary);
         }
         return salary;
+    }
+
+    public static String avgSalary(Connection connection) throws SQLException {
+        String avgSalary = null;
+        String query = "select avg(salary) as salary from employeePayroll where gender = ? group by gender";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, "M");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            avgSalary = (resultSet.getString("salary"));
+            System.out.println("Average salary of males is: " + avgSalary);
+        }
+        return avgSalary;
     }
 
     public static void listDrivers() {
