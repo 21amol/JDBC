@@ -1,20 +1,22 @@
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class DBTest extends TestCase {
+class DBTest {
     static Connection a = null;
 
-    public void testReteriveData() {
+    @Test
+    public void givenUpdatedData_shouldRetrieve_correctRecords() {
         try {
             DB db = new DB();
-            a = DB.connected();
-            String actual = DB.reteriveData(a);
-            Assert.assertEquals("Admin", actual);
+            a = db.connected();
+            String expected = db.reteriveData(a);
+            Assert.assertEquals("30000", expected);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
+
