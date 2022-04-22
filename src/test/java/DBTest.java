@@ -29,6 +29,17 @@ class DBTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void givenParticularDateRange_shouldReturn_correctRecords() {
+        try {
+            a = DB.connected();
+            String expected = DB.particularDateRange(a);
+            Assert.assertEquals("Apirya", expected);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
