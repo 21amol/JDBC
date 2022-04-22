@@ -7,16 +7,28 @@ import java.sql.SQLException;
 class DBTest {
     static Connection a = null;
 
+
     @Test
     public void givenUpdatedData_shouldRetrieve_correctRecords() {
         try {
-            DB db = new DB();
-            a = db.connected();
-            String expected = db.reteriveData(a);
+            a = DB.connected();
+            String expected = DB.reteriveData(a);
+            Assert.assertEquals("30000", expected);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void givenData_shouldRetrieveData_byName() {
+        try {
+            a = DB.connected();
+            String expected = DB.reteriveDataByName(a);
             Assert.assertEquals("30000", expected);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
+
 
