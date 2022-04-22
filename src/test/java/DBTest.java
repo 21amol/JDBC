@@ -40,6 +40,17 @@ class DBTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void givenGender_shouldReturn_SumSalary() {
+        try {
+            a = DB.connected();
+            String expected = DB.sumByGroup(a);
+            Assert.assertEquals("110000.0", expected);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
